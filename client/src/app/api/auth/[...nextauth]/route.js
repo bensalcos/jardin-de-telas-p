@@ -10,7 +10,7 @@ const handler = NextAuth({
         password: { label: "password", type: "password" },
       },
       async authorize(credentials) {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/token/`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}token/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -40,7 +40,7 @@ const handler = NextAuth({
         token.accessToken = user.token;
 
         try {
-          const profileRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/perfil/`, {
+          const profileRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}perfil/`, {
             method: "GET",
             headers: {
               Authorization: `Bearer ${user.token}`,

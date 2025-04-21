@@ -16,7 +16,7 @@ export default function NavPanel() {
     redirect("/forbidden");
   }
 
-  if (status === "authenticated" && session?.user?.rol != "admin") {
+  if (status === "authenticated" && session?.user?.rol != "administrador") {
     redirect("/forbidden");
   }
   return (
@@ -25,11 +25,7 @@ export default function NavPanel() {
         <ul className="pt-24 space-y-6">
           <hr />
           {menuItems.map((item) => (
-            <Link
-              key={item.title}
-              href={item.href}
-              className="flex text-gray-800 hover:bg-hover rounded-menu h-10 w-full items-center justify-center"
-            >
+            <Link key={item.title} href={item.href} className="flex text-gray-800 hover:bg-hover rounded-menu h-10 w-full items-center justify-center">
               <li>{item.title}</li>
             </Link>
           ))}

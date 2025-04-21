@@ -9,7 +9,7 @@ class ApiService {
     this.token = token;
   }
   async request(endpoint, method = "POST", data = null, token = null) {
-    const url = `${this.baseURL}/${endpoint}/`;
+    const url = `${this.baseURL}${endpoint}/`;
 
     const options = {
       method,

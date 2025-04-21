@@ -9,7 +9,7 @@ export default function Pedido() {
 
   useEffect(() => {
     if (status === "authenticated") {
-      fetch("https://www.api.bensalcos.dev/api/v1/pedidos/", {
+      fetch("https://api.bensalcos.dev/api/v1/pedidos/", {
         headers: {
           Authorization: `Bearer ${session.accessToken}`,
         },

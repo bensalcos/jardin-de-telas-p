@@ -9,11 +9,12 @@ import BarraBusqueda from "@/components/ui/barra-busqueda";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useSession } from "next-auth/react";
-import { toast } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function TablaUsuarios({ usuarios }) {
   const [searchQuery, setSearchQuery] = useState("");
   const { data: session } = useSession();
+  const { addToast, ToastProvider, ToastViewport } = useToast();
   const usuariosFiltrados = usuarios.filter(
     (usuario) => usuario.nombre.toLowerCase().includes(searchQuery.toLowerCase()) || usuario.apellido.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -34,12 +35,12 @@ export default function TablaUsuarios({ usuarios }) {
         throw new Error(`Error al eliminar el usuario: ${response.status}`);
       }
       console.log("Usuario eliminado correctamente");
-      toast({
+      addToast({
         title: "Usuario eliminado correctamente",
-        variant: "success",
+        variant: "default",
       });
     } catch (err) {
-      toast({
+      addToast({
         title: `Error al eliminar el usuario: ${err.message}`,
         variant: "destructive",
       });
@@ -117,6 +118,10 @@ export default function TablaUsuarios({ usuarios }) {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <ToastProvider>
+        <ToastViewport />
+      </ToastProvider>
     </div>
   );
 }
